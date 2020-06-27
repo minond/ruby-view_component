@@ -1,8 +1,8 @@
+require "view_component/version"
 require "view_component/compound_types"
 require "view_component/third_party"
 require "view_component/type_checker"
 require "view_component/type_error"
-require "view_component/version"
 
 class ViewComponent
   include ViewComponent::CompoundTypes
