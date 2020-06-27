@@ -111,3 +111,7 @@ https://github.com/minond/ruby-view_component.
 
 The gem is available as open source under the terms of the [MIT
 License](https://opensource.org/licenses/MIT).
+
+---
+
+[![Build Status](https://travis-ci.com/minond/ruby-view_component.svg?branch=master)](https://travis-ci.com/minond/ruby-view_component)
