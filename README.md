@@ -88,6 +88,39 @@ convenience:
 - `MaybeString` which is defined as `[NilClass, String]`
 
 
+### Rendering components
+
+All components are rendered by calling `.render`. This output can be rendered
+in an ERB template like any other:
+
+```erb
+<%= Header.render(:label => "Welcome!") %>
+```
+
+#### In Rails applications
+
+Just like you are able to render views in your Rails application with `render`,
+`ViewComponent` offers a `component` method which can be used to simulate the
+same behaviour and API, but for rendering a component rather than a view.
+
+Calling `component User::Show, :user => current_user` will render the `User::Show`
+with the defined properties and inject it into the main `layouts/application`
+layout. The component class may be omitted if the component's class follows a
+naming convention of `<resource name>::<action name>`.
+
+```ruby
+class UserController < ApplicationController
+  # GET /user/123
+  def show
+    # The line below is the same as doing this:
+    # render :html => User::Show.render(:user => current_user),
+    #        :layout => "layouts/application"
+    component :user => current_user
+  end
+end
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
