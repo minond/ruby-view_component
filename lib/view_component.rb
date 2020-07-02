@@ -87,6 +87,7 @@ class ViewComponent
   # @raise [TypeError] if a property is passed in with an unexpected type.
   def initialize(children = nil, **attrs)
     @children = proc { |*args| block_given? ? yield(*args) : children }
+    @view_context = attrs.delete(:view_context)
     @attributes = attrs
 
     self.class.zip(attrs).each do |(prop, type, val)|
@@ -99,6 +100,10 @@ class ViewComponent
   def render
     raise NotImplementedError, "#render is not implemented"
   end
+
+private
+
+  attr_accessor :view_context
 
   # @param [Array<String>, String] strs
   # @return [String]
@@ -125,5 +130,10 @@ class ViewComponent
   # @return [Hash]
   def session
     {}
+  end
+
+  # Allows for methods like `asset_path` to be called within components.
+  def method_missing(method, *args)
+    view_context&.send(method, *args)
   end
 end
