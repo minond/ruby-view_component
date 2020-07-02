@@ -134,6 +134,14 @@ private
 
   # Allows for methods like `asset_path` to be called within components.
   def method_missing(method, *args)
-    view_context&.send(method, *args)
+    if view_context&.respond_to?(method)
+      view_context.send(method, *args)
+    else
+      super
+    end
+  end
+
+  def respond_to_missing?(method, *_args)
+    view_context&.respond_to?(method)
   end
 end
