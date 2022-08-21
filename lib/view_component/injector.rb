@@ -1,10 +1,13 @@
 class ViewComponent
   module Injector
     def self.inject_rails_helpers_into_view_component!
-      ViewComponent.include Rails.application.routes.url_helpers if defined?(Rails)
-      ViewComponent.include ActionView::Helpers::UrlHelper if defined?(ActionView)
-      ViewComponent.include ActionView::Helpers::FormHelper if defined?(ActionView)
-      ViewComponent.include ActionView::Context if defined?(ActionView)
+      if defined?(ActionView)
+        ViewComponent.include ActionView::Helpers::UrlHelper
+        ViewComponent.include ActionView::Helpers::FormHelper
+        ViewComponent.include ActionView::Context
+      end
+
+      ViewComponent.include Rails.application.routes.url_helpers if defined?(Rails) && Rails.respond_to?(:application)
       ViewComponent.include ActiveSupport::Configurable if defined?(ActiveSupport)
       ViewComponent.include ActionController::RequestForgeryProtection if defined?(ActionController)
     end

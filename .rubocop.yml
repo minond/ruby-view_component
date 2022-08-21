@@ -3,6 +3,9 @@ AllCops:
     - bin/*
     - vendor/bundle/**/*
 
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: false
 

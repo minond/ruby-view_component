@@ -24,9 +24,10 @@ module ViewComponent::TypeChecker
   # @param [Object] val
   # @return [Boolean]
   def self.of_list_type?(type, val)
-    if val.is_a? ActiveRecord::AssociationRelation
+    case val
+    when ActiveRecord::AssociationRelation
       val.name == type.first.name
-    elsif val.is_a? Array
+    when Array
       val.first.nil? || val.first.is_a?(type.first)
     else
       false
