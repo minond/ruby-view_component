@@ -32,7 +32,7 @@ class ViewComponent
       define_method(:_block) { block }
 
       def initialize(children = nil, **attr_overrides)
-        super(children, _attrs.merge(attr_overrides))
+        super(children, **_attrs.merge(attr_overrides))
       end
 
       def render
@@ -66,7 +66,7 @@ class ViewComponent
   # @param [Hash] attrs
   # @return [String]
   def self.render(children = nil, **attrs, &block)
-    html(new(children, attrs, &block).render)
+    html(new(children, **attrs, &block).render)
   end
 
   # @param [Array<Symbol>] props
