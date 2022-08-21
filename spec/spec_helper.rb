@@ -1,8 +1,5 @@
 require "bundler/setup"
 require "view_component"
-require "action_view"
-require "active_support"
-require "active_support/core_ext/string/output_safety"
 
 require_relative "test_components"
 

@@ -1,10 +1,14 @@
+require "action_view"
+require "active_support"
+require "active_support/core_ext/string/output_safety"
+
 require "view_component/version"
 require "view_component/compound_types"
 require "view_component/type_checker"
 require "view_component/type_error"
 require "view_component/rendering"
 require "view_component/injector"
-require "view_component/railtie" if defined?(Rails::Railtie)
+require "view_component/railtie"
 
 class ViewComponent
   include ViewComponent::CompoundTypes
